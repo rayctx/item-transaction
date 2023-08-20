@@ -17,17 +17,17 @@ class ItemsController extends Controller
         //$search = $request->query('search');
         
         $data_items = Items::query();
-        $data_items = $data_items->select('items.item_name', 'kinds.kinds_name');
+        $data_items = $data_items->select('items.item_name', 'kinds.kinds_name', 'items.stock');
         $data_items = $data_items->join('kinds','items.kinds_id','=','kinds.id');
         if(request('search')){
             $data_items = $data_items->orWhere('items.item_name','like','%'.request('search').'%')
             ->orWhere('items.stock','like','%'.request('search').'%')
             ->orWhere('kinds.kinds_name','like','%'.request('search').'%')
             ->where('items.is_deleted',0)
-            ->paginate(2)->fragment('std');
+            ->paginate(10)->fragment('std');
         }else{
-            $data_items =Items::where('is_deleted',0)
-            ->paginate(2)->fragment('std');
+            $data_items =$data_items->where('is_deleted',0)
+            ->paginate(10)->fragment('std');
         }
         // dd($data_items);
         return view('items.data')->with([
