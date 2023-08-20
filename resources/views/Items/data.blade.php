@@ -17,7 +17,7 @@
             @endif
             <form action="" method="GET">
                 <div class="row mb-3">
-                    <label for="search" class="col-sm-2 col-form-label">Stok</label>
+                    <label for="search" class="col-sm-2 col-form-label">Cari Data:</label>
                     <div class="col-sm-4">
                         <input type="text" name="search" id="search" class="form-control form-control-sm" value="" placeholder="Search Data" autofocus>
                     </div>
@@ -38,7 +38,7 @@
                             {{-- <th>{{ $loop->iteration }}</th> --}}
                             <td>{{ $row->item_name }}</td>
                             <td>{{ $row->stock }}</td>
-                            <td>{{ $row->kinds->kinds_name }}</td>
+                            <td>{{ $row->kinds_name }}</td>
                             <td>
                                 <button onclick="window.location='{{ url('items/' . $row->id) }}'" type="button"
                                     class="btn btn-sm btn-info" title="Edit Data">
